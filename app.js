@@ -23,6 +23,8 @@ const randomPichuNoises = [
   "피츄피츄우우우우",
   "핏?",
   'https://tenor.com/view/super-smash-bros-pichu-super-smash-bros-ultimate-pokemon-walking-gif-16804409',
+  'https://i.kym-cdn.com/photos/images/original/001/469/230/906.gif',
+  'https://thumbs.gfycat.com/AppropriateWellgroomedBear-max-1mb.gif',
   "ㅗ",
 ]
 
@@ -35,18 +37,27 @@ let getRandom = (array) => {
 client.login(process.env.BOT_TOKEN)
 
 client.on('message', (msg) => {
-  if (msg.content === '피츄야') msg.channel.send(getRandom(randomPichuNoises));
+  if (msg.content === '피츄야!') msg.channel.send(getRandom(randomPichuNoises));
+  if (msg.content === '피츄야물어!') msg.channel.send('https://ssb.wiki.gallery/images/thumb/d/df/Pichu_Down_B_SSBU.gif/300px-Pichu_Down_B_SSBU.gif');
   if (msg.content === '^랜덤캐') msg.channel.send(getRandom(smashCharacters));
   if (msg.content === '^pichu') msg.channel.send('https://tenor.com/view/super-smash-bros-pichu-super-smash-bros-ultimate-pokemon-walking-gif-16804409');
   if (msg.content === '^surprisedpika') msg.channel.send('https://tenor.com/view/surprised-pikachu-surprised-pikachu-face-face-gif-15329743');
+  if (msg.content === '^mmadd'){
+    msg.guild.members.cache.get(msg.author.id).roles.add('832530352056041541')
+    msg.reply('매치메이커 알림을 구독하셨습니다. Matchmaker added! :)');
+  }
+  if (msg.content === '^mmremove'){
+    msg.guild.members.cache.get(msg.author.id).roles.remove('832530352056041541')
+    msg.reply('매치메이커 알림 구독을 해제하였습니다. Matchmaker removed! :)');
+  }
 });
 
 
 
 //welcome
 client.on("guildMemberAdd", function(member){
-    const channel = client.channels.cache.get('824633487331688471');
-    channel.send(`안녕하세요 <@${member.user.id}>님!`);
+  const channel = client.channels.cache.get('824633487331688471');
+  channel.send(`안녕하세요 <@${member.user.id}>님!`);
 });
 
 // Adding reaction-role function
@@ -58,13 +69,18 @@ client.on('messageReactionAdd', async (reaction, user) => {
   if (reaction.message.channel.id == '824639835620114473') {
     if (reaction.emoji.name === '🐱') {
       await reaction.message.guild.members.cache
-        .get(user.id)
-        .roles.add('801079326820139038');
+      .get(user.id)
+      .roles.add('801079326820139038');
     }
     if (reaction.emoji.name === '⚔️') {
       await reaction.message.guild.members.cache
-        .get(user.id)
-        .roles.add('801078738615795743');
+      .get(user.id)
+      .roles.add('801078738615795743');
+    }
+    if (reaction.emoji.name === '🦞') {
+      await reaction.message.guild.members.cache
+      .get(user.id)
+      .roles.add('832530352056041541');
     }
   } else return;
 });
@@ -78,13 +94,18 @@ client.on('messageReactionRemove', async (reaction, user) => {
   if (reaction.message.channel.id == '824639835620114473') {
     if (reaction.emoji.name === '🐱') {
       await reaction.message.guild.members.cache
-        .get(user.id)
-        .roles.remove('801079326820139038');
+      .get(user.id)
+      .roles.remove('801079326820139038');
     }
     if (reaction.emoji.name === '⚔️') {
       await reaction.message.guild.members.cache
-        .get(user.id)
-        .roles.remove('801078738615795743');
+      .get(user.id)
+      .roles.remove('801078738615795743');
+    }
+    if (reaction.emoji.name === '🦞') {
+      await reaction.message.guild.members.cache
+      .get(user.id)
+      .roles.remove('832530352056041541');
     }
   } else return;
 });
