@@ -28,6 +28,26 @@ const randomPichuNoises = [
   "ㅗ",
 ]
 
+const pichuChallenge = [
+  "메테오피니시!",
+  "쓰리스톡!!",
+  "실드브레이크!",
+  "풋스툴ㅋㅋㅋ",
+  "메테오로 이겨봐ㅋㅋ",
+  "수어사이드킬!",
+  "잽락해봐잽락",
+  "쓰리스톡할수있겟나",
+  "스테이지 스파이크!!!",
+  "미러전..ㅇㅇ",
+  "스매시 한번도 안쓰고 이겨봐 ㅋㅋ",
+  "메테오메테오",
+  "잡기로 이겨봐",
+  "리커버리 뺴고 B버튼 한번도 안쓰기 ㅋㅋ",
+  "제로투데스가쟈",
+  "다운B로 이기기!",
+  "디스리스펙트해바 ㅎㅎ"
+]
+
 
 let getRandom = (array) => {
   return array[Math.floor(Math.random() * array.length)];
@@ -38,6 +58,7 @@ client.login(process.env.BOT_TOKEN)
 
 client.on('message', (msg) => {
   if (msg.content === '피츄야!') msg.channel.send(getRandom(randomPichuNoises));
+  if (msg.content === '^피츄챌린지') msg.reply(getRandom(pichuChallenge));
   if (msg.content === '피츄야물어!') msg.channel.send('https://ssb.wiki.gallery/images/thumb/d/df/Pichu_Down_B_SSBU.gif/300px-Pichu_Down_B_SSBU.gif');
   if (msg.content === '^랜덤캐') msg.channel.send(getRandom(smashCharacters));
   if (msg.content === '^pichu') msg.channel.send('https://tenor.com/view/super-smash-bros-pichu-super-smash-bros-ultimate-pokemon-walking-gif-16804409');
